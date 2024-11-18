@@ -1,0 +1,17 @@
+.table-header {
+    background-color: #0d6dfb;
+    color: white;
+    padding: 15px;
+    border-radius: 5px 5px 0 0;
+}
+.btn-custom {
+    margin-right: 10px;
+}
+.table-container {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.action-btns i {
+    cursor: pointer;
+}

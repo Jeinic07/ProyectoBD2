@@ -1,0 +1,29 @@
+.custom-heading {
+    color: #0d6dfb;
+    text-align: center;
+    font-size: 3rem; 
+    font-weight: bold;
+    margin-top: 3rem; 
+    margin-bottom: 2rem; 
+  }
+  .form-label {
+    margin-bottom: 1rem;
+  }
+  .form-control {
+    margin-bottom: 1rem; 
+  }
+  .card-body {
+    padding: 2rem; 
+  }
+  #togglePassword {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    z-index: 2;
+  }
+
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+  display: none;
+}

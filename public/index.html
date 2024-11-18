@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DataWave</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <h1 class="custom-heading text-center">DataWave</h1>
+    
+    <!-- Componente de Inicio de Sesión -->
+    <div class="card mx-auto" style="max-width: 400px;">
+        <div class="card-body">
+          <h2 class="card-title text-center mb-3">Iniciar Sesión</h2>
+          <div class="alert alert-dismissible alert-danger" bis_skin_checked="1" style="text-align: center;display: none;" id="errorAlert">
+            <strong>¡Ups! Usuario o contraseña incorrecta.</strong> Por favor intente de nuevo.
+          </div>          
+          <form id="loginForm">
+            <div class="mb-3">
+              <label for="username" class="form-label">Usuario</label>
+              <input type="text" class="form-control" id="username" placeholder="Ingresa tu usuario">
+            </div>
+            <div class="mb-3 position-relative">
+              <label for="password" class="form-label">Contraseña</label>
+              <input type="password" class="form-control" id="password" placeholder="Ingresa tu contraseña">
+              <button type="button" id="togglePassword" class="btn btn-outline-secondary position-absolute top-50 end-0 translate-middle-y" style="margin-top: 19px;">
+                  <i class="bi bi-eye-slash"></i>
+                </button>              
+            </div>
+            <div class="d-flex justify-content-between">
+              <a href="#" class="text-decoration-none">Recuperar contraseña</a>
+            </div>
+            <button type="submit" class="btn btn-primary w-100 mt-3">Ingresar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="./js/login.js"></script>
+  
+  
+</body>
+</html>

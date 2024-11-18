@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DataWave</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="../public/css/table.css">
+    <link rel="stylesheet" href="../public/css/form.css">
+</head>
+<body>
+    
+    <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="inicio.html" style="font-size: 2rem">DataWave</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link " href="inicio.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="instalacion.html">Registrar instalación</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="tecnico.html">Registrar técnico</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="mostrar.html">Mostrar</a>
+                    </li>
+                    <li class="nav-item" style="position: absolute; top: 0; right: 0; margin-right: 5rem; margin-top: 1rem;">
+                        <a class="nav-link" href="index.html">Cerrar sesión</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div style="text-align: center;">
+        <div class="btn-group" role="group" aria-label="Basic radio toggle button group" style="display: inline-block; margin-top: 1rem;">
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+            <label class="btn btn-outline-primary" for="btnradio1">Registrar instalación</label>
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+            <label class="btn btn-outline-primary" for="btnradio2">Mostrar instalaciones</label>            
+        </div>
+      </div>
+
+      <div id="tableContainer" style="display: none;">
+        <div class="container mt-5">
+            <div class="table-container">
+                <div class="table-header d-flex justify-content-between align-items-center">
+                    <h3 class="m-0">Instalaciones</h3>
+                    <div>
+                        <button class="btn btn-danger btn-custom">Eliminar</button>
+                    </div>
+                </div>
+                <table class="table table-striped table-hover mb-0">
+                    <thead>
+                        <tr>
+                            <th scope="col">
+                                <input type="checkbox" />
+                            </th>
+                            <th scope="col">ID</th>
+                            <th scope="col">Fecha_instalación</th>
+                            <th scope="col">Nombre_Técnico</th>
+                            <th scope="col">Usuario</th>
+                            <th scope="col">Dirección</th>
+                            <th scope="col">Ciudad</th>
+                            <th scope="col">Tipo_plan</th>
+                            <th scope="col">Precio</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tecnicosTable">
+                        <!-- Los datos de los técnicos se cargarán aquí -->
+                    </tbody>
+                </table>
+                <div class="d-flex justify-content-between align-items-center p-3">
+                    <button id="generateReport" class="btn btn-info" style="background-color:#0d6dfb;color: white">Generar reporte</button>
+                    <span id="pagination-info"></span>
+                    <nav>
+                        <ul class="pagination mb-0">
+                            <!-- Se llenará dinámicamente -->
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <div id="formContainer" style="margin-top: -2rem">
+        <div class="container mt-5">
+            <h2 class="text-center text-primary">Registrar instalación</h2>
+            <form class="mt-4">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="fecha" class="form-label">Fecha</label>
+                        <input type="date" class="form-control" id="fecha" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="tecnico" class="form-label">Nombre del Técnico</label>
+                        <select class="form-select" id="tecnico" required>
+                            <option value="">Seleccione un técnico</option>
+                            <!-- Opciones se llenarán dinámicamente -->
+                        </select>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="usuario" class="form-label">Usuario</label>
+                        <input type="text" class="form-control" id="usuario" placeholder="Ingrese el usuario" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="direccion" class="form-label">Dirección</label>
+                        <input type="text" class="form-control" id="direccion" placeholder="Ingrese la dirección" required>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="ciudad" class="form-label">Ciudad</label>
+                        <input type="text" class="form-control" id="ciudad" placeholder="Ingrese la ciudad" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="tipoPlan" class="form-label">Tipo de Plan</label>
+                        <select class="form-select" id="tipoPlan" required>
+                            <option value="">Seleccione un plan</option>
+                            <!-- Opciones se llenarán dinámicamente -->
+                        </select>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="precioPlan" class="form-label">Precio del Plan</label>
+                        <input type="text" class="form-control" id="precioPlan" readonly>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Registrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="../public/js/instalacion.js"></script>
+</body>
+</html>
