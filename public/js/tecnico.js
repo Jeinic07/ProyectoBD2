@@ -92,7 +92,7 @@ async function agregarTecnico(event) {
           <td>${tecnico.id_tecnico || ''}</td>
           <td>${nombreCompleto}</td>
           <td>${tecnico.cedula || ''}</td>
-          <td>${tecnico.tel_tec || ''}</td>
+          <td>${tecnico.Telefono_emp || ''}</td>
         `;
         tecnicosTableBody.appendChild(row);
       });

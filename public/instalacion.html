@@ -32,7 +32,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="mostrar.html">Mostrar</a>
                     </li>
-                    <li class="nav-item" style="position: absolute; top: 0; right: 0; margin-right: 5rem; margin-top: 1rem;">
+                    <li class="nav-item" style="position: absolute; top: 0; right: 0; margin-right: 5rem; margin-top: 1rem;">
                         <a class="nav-link" href="index.html">Cerrar sesión</a>
                     </li>
                 </ul>
@@ -68,6 +68,7 @@
                             <th scope="col">Fecha_instalación</th>
                             <th scope="col">Nombre_Técnico</th>
                             <th scope="col">Usuario</th>
+                            <th scope="col">Documento de identidad</th>
                             <th scope="col">Dirección</th>
                             <th scope="col">Ciudad</th>
                             <th scope="col">Tipo_plan</th>
@@ -111,19 +112,35 @@
                 </div>
                 <div class="row mb-3">
                     <div class="col-md-6">
-                        <label for="usuario" class="form-label">Usuario</label>
-                        <input type="text" class="form-control" id="usuario" placeholder="Ingrese el usuario" required>
+                        <label for="usuario" class="form-label">Primer Nombre</label>
+                        <input type="text" class="form-control" id="usuario" placeholder="Ingrese el primer nombre" required>
                     </div>
                     <div class="col-md-6">
-                        <label for="direccion" class="form-label">Dirección</label>
-                        <input type="text" class="form-control" id="direccion" placeholder="Ingrese la dirección" required>
+                        <label for="direccion" class="form-label">Segundo Nombre</label>
+                        <input type="text" class="form-control" id="direccion" placeholder="Ingrese el segundo nombre" required>
                     </div>
                 </div>
                 <div class="row mb-3">
                     <div class="col-md-6">
+                        <label for="usuario" class="form-label">Primer Apellido</label>
+                        <input type="text" class="form-control" id="usuario" placeholder="Ingrese el primer Apellido" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="direccion" class="form-label">Segundo Apellido</label>
+                        <input type="text" class="form-control" id="direccion" placeholder="Ingrese el segundo Apellido" required>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="ciudad" class="form-label">Documento de identidad</label>
+                        <input type="text" class="form-control" id="ciudad" placeholder="Ingrese el documento" required>
+                    </div>
+                    <div class="col-md-6">
                         <label for="ciudad" class="form-label">Ciudad</label>
                         <input type="text" class="form-control" id="ciudad" placeholder="Ingrese la ciudad" required>
                     </div>
+                </div>
+                <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="tipoPlan" class="form-label">Tipo de Plan</label>
                         <select class="form-select" id="tipoPlan" required>
@@ -131,8 +148,6 @@
                             <!-- Opciones se llenarán dinámicamente -->
                         </select>
                     </div>
-                </div>
-                <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="precioPlan" class="form-label">Precio del Plan</label>
                         <input type="text" class="form-control" id="precioPlan" readonly>
@@ -147,6 +162,6 @@
     
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script src="../public/js/instalacion.js"></script>
+    <script src="./js/instalacion.js"></script>
 </body>
 </html>

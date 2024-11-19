@@ -15,3 +15,8 @@ export const POSTGRES_HOST = process.env.POSTGRES_HOST
 export const POSTGRES_USER = process.env.POSTGRES_USER
 export const POSTGRES_PORT = process.env.POSTGRES_PORT
 export const POSTGRES_PASSWORD = process.env.POSTGRES_PASSWORD
+
+export const MONGO_URI = process.env.MONGO_URI; 
+export const MONGO_DB_NAME = process.env.MONGO_DB_NAME;
+
+
