@@ -70,9 +70,9 @@ export const readTecnicoById = async(req, res) => {
 export const CreateTecnico = async (req, res) =>{
 
     try{
-        const {nom1, nom2, ape1, ape2, cedula, telefono} = req.body
-        const [rows] = await pool.query(`INSERT INTO Tecnico (nom1_tec, nom2_tec, ape1_tec, ape2_tec, cedula, Telefono_emp) 
-    VALUES (?, ?, ?, ?, ?, ?)`, [nom1, nom2, ape1, ape2, cedula, telefono])
+        const {nom1, nom2, ape1, ape2, cedula, telefono, Id_plan} = req.body
+        const [rows] = await pool.query(`INSERT INTO Tecnico (nom1_tec, nom2_tec, ape1_tec, ape2_tec, cedula, Telefono_emp, Id_plan) 
+    VALUES (?, ?, ?, ?, ?, ?, ?)`, [nom1, nom2, ape1, ape2, cedula, telefono, Id_plan])
         
     res.status(200).json({ success: true, message: 'Técnico agregado exitosamente.' });
     }catch (error) {

@@ -8,9 +8,10 @@ async function agregarTecnico(event) {
   const ape2 = document.getElementById('lastName2').value.trim();
   const cedula = document.getElementById('idDocument').value.trim();
   const telefono = document.getElementById('phoneNumber').value.trim();
+  const Id_plan = 1;
 
   // Crear el cuerpo de la solicitud
-  const data = { nom1, nom2, ape1, ape2, cedula, telefono };
+  const data = { nom1, nom2, ape1, ape2, cedula, telefono, Id_plan};
 
   try {
       const response = await fetch('/tecnicos', {
