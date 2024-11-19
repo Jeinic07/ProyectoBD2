@@ -4,7 +4,7 @@ import { readAllPlans, createPlan} from "../Controllers/planesController.js";
 
 const router = Router();
 
-router.get('/planes', await readAllPlans);
+router.get('/planes', readAllPlans);
 router.post('/planes', createPlan);
 
 export default router;

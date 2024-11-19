@@ -170,3 +170,134 @@ async function agregarTecnico(event) {
     });
   });
 
+
+  document.querySelectorAll('.dropdown-item').forEach(item => {
+    item.addEventListener('click', function() {
+        // Obtener el texto de la opción seleccionada
+        const selectedText = this.textContent;
+  
+        // Actualizar el texto al lado del botón
+        document.getElementById('selected-filter').textContent = selectedText;
+    });
+  });
+  
+  
+  // Escuchar clic en los elementos de la lista de filtros
+  document.querySelectorAll('#filterOptions .dropdown-item').forEach(item => {
+      item.addEventListener('click', function(event) {
+          selectedFilter = event.target.textContent; // Obtener el texto del filtro seleccionado
+          
+          // Actualizar el subtítulo en la interfaz
+          document.getElementById('selected-filter').textContent = selectedFilter;
+      });
+  });
+
+
+
+
+
+
+  //---------------------------------------------------------------------------
+
+  document.getElementById('generateReport').addEventListener('click', function() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+  
+    // Obtener la fecha actual
+    const now = new Date();
+    const formattedDate = now.toLocaleString('es-CO', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: true
+    });
+  
+    // Título centrado (horizontal y vertical) y con tamaño de fuente aumentado
+    doc.setFontSize(22);  // Aumentamos 4 puntos de tamaño de fuente
+    doc.setTextColor(13, 109, 251); // Color #0d6dfb
+    const title = 'Reporte ' + formattedDate;
+    const titleX = doc.internal.pageSize.width / 2;
+    const titleY = doc.internal.pageSize.height / 2 - 10; // Centrado verticalmente (ajustamos un poco)
+    doc.text(title, titleX, titleY, null, null, 'center');
+  
+    // Subtítulo centrado (horizontal y vertical) y con tamaño de fuente aumentado
+    doc.setFontSize(18);  // Aumentamos 4 puntos de tamaño de fuente
+    doc.setTextColor(0, 0, 0); // Color negro para el subtítulo
+    const selectedFilterText = document.getElementById('selected-filter').textContent;
+    const subtitle = 'Filtrado por: ' + selectedFilterText;
+    const subtitleY = titleY + 10; // Colocamos el subtítulo justo debajo del título
+    doc.text(subtitle, titleX, subtitleY, null, null, 'center');
+  
+    // Ajustar la posición para la tabla, un poco debajo del subtítulo
+    let yOffset =+ 10; // Cambiar a un valor mayor para dejar más espacio entre el subtítulo y la tabla
+    const lineHeight = 8; // Distancia entre líneas de la tabla
+    const sectionsPerPage = 6; // Número de secciones por página
+    let sectionCount = 0; // Contador de secciones por página
+    doc.addPage();
+    // Función para consumir la API seleccionada
+    function fetchApiData(apiUrl) {
+      return fetch(apiUrl)
+        .then(response => response.json())
+        .catch(error => {
+          console.error('Error al obtener los datos de la API:', error);
+          return [];
+        });
+    }
+  
+    // Determinar la URL de filtrado según la opción seleccionada
+    let url = '/tecnicos'; // URL por defecto (sin filtro)
+    if (selectedFilterText === 'Nombre') {
+      url = '/tecnicos-filtro1';
+    } else if (selectedFilterText === 'Apellido') {
+      url = '/tecnicos-filtro2';
+    } else if (selectedFilterText === 'Primeros 20') {
+      url = '/tecnicos-filtro3';
+    }
+  
+    // Llamar a la función fetchApiData con la URL correspondiente
+    fetchApiData(url).then(tecnicos => {
+      // Generar el reporte con los datos obtenidos
+      tecnicos.forEach((tecnico, index) => {
+        // Extraer los valores del JSON (tecnico)
+        const id = tecnico.id_tecnico;
+        const name = `${tecnico.nom1_tec} ${tecnico.nom2_tec} ${tecnico.ape1_tec} ${tecnico.ape2_tec}`;
+        const cedula = tecnico.cedula;
+        const phone = tecnico.Telefono_emp;
+  
+        // Escribir los datos en el PDF
+        doc.setFontSize(12);
+        doc.setTextColor(0, 0, 0); // Color negro para los datos
+  
+        // Escribir los datos de cada técnico
+        doc.text('_______________________________________________________________________________', 10, yOffset);
+        yOffset += lineHeight;
+        doc.text(`Id: ${id}`, 10, yOffset);
+        yOffset += lineHeight;
+        doc.text(`Nombre: ${name}`, 10, yOffset);
+        yOffset += lineHeight;
+        doc.text(`Cédula: ${cedula}`, 10, yOffset);
+        yOffset += lineHeight;
+        doc.text(`Teléfono: ${phone}`, 10, yOffset);
+        yOffset += lineHeight;
+        doc.text('_______________________________________________________________________________', 10, yOffset);
+  
+        // Actualizar yOffset después de cada bloque de datos
+        yOffset += lineHeight;
+        sectionCount++; // Incrementar el contador de secciones
+  
+        // Si hemos agregado 5 secciones, saltamos a la siguiente página
+        if (sectionCount >= sectionsPerPage) {
+          doc.addPage();
+          yOffset = 10; // Resetear la posición Y
+          sectionCount = 0; // Reiniciar el contador de secciones
+        }
+      });
+  
+      // Guardar el PDF
+      doc.save('reporte-tecnicos.pdf');
+    });
+  });
+  
